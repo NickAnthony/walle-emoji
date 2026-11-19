@@ -790,4 +790,31 @@ def snow(f):
     return d
 save2('scarf',[F(pose(hx=i%2,eyes='flat') if i<5 else pose(eyes='happy'),110,back=snow(i),front=scarf(i)) for i in range(8)])
 
+# bills
+BILLH=["ggggg","ggdgg","ggggg"]; BILLV=["ggg","ggg","gdg","ggg","ggg"]
+def bill(x,y,v=0): return outlined(G(BILLV if v else BILLH,x,y,{'g':GREEN,'d':DGREEN}))
+
+
+# money-makeitrain
+PATH=[(25,13),(26,9),(25,5),(23,2),(20,0),(17,-3)]
+def stackat(x0,hy_):
+    g=rectd(x0,hy_-4,x0+4,hy_-1,GREEN)
+    for x in range(x0,x0+5): g[(x,hy_-3)]=DGREEN; g[(x,hy_-1)]=DGREEN
+    return outlined(g)
+seq=[]
+for f in range(8):
+    ru=f%2==1; lu=f%2==0
+    p=pose(La=((-4,1),(-5,-1)) if lu else ((-4,2),(-5,0)),Ra=((4,1),(5,-1)) if ru else HM)
+    fr=shades(p['hx'],p['hy'],(f*2)%6 if f<3 else None)
+    fr.update(stackat(25,21 if ru else 22)); fr.update(stackat(1,21 if lu else 22))
+    for ph in (0,3,6):
+        i=(f+ph)%8
+        if i<6:
+            x,y=PATH[i]; v=(f+ph)%2; fr.update(bill(x,y,v))
+        j=(f+ph+4)%8
+        if j<6:
+            x,y=PATH[j]; v=(f+ph+1)%2; fr.update(bill(31-x-(2 if v else 4),y,v))
+    seq.append(F(p,120,front=fr))
+save('money-makeitrain',seq)
+
 print(f'wrote {len(ALL)} GIFs to {out}')
