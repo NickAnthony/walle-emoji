@@ -416,7 +416,7 @@ def shades(ox,oy,t=None):
 def puton(ox,oy,el):
     d=shades(ox,oy); d.update(farm(el,(OX+18+ox+1,OY+2+oy+1))); return d
 c0=pose(); cu=pose(hy=-1)
-save('sunglasses',[F(c0,350),F(P(c0,look=1),350,front=puton(4,9,(26,25))),F(c0,70,front=puton(3,5,(27,22))),F(c0,70,front=puton(1,2,(27,20))),
+save('sunglasses',[F(P(c0,look=1),350,front=puton(4,9,(26,25))),F(c0,70,front=puton(3,5,(27,22))),F(c0,70,front=puton(1,2,(27,20))),
     F(c0,180,front=puton(0,0,(27,19))),F(P(c0,hy=1),110,front=shades(0,1)),
     F(cu,90,front=shades(0,-1,0)),F(cu,90,front=shades(0,-1,2)),F(cu,90,front=shades(0,-1,4)),F(cu,600,front=shades(0,-1)),
     F(P(cu,hy=0),130,front=shades(0,0)),F(cu,90,front=shades(0,-1,0)),F(cu,90,front=shades(0,-1,2)),F(cu,90,front=shades(0,-1,4)),F(cu,700,front=shades(0,-1))])
